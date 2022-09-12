@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import bfst22.vector.MapCanvas?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<Scene xmlns="http://javafx.com/javafx"
+       xmlns:fx="http://javafx.com/fxml"
+       fx:controller="bfst22.vector.Controller"
+       fx:id="scene">
+    <root>
+        <BorderPane prefHeight="480.0" prefWidth="640.0">
+            <top>
+                <MenuBar>
+                    <Menu text="File">
+                        <MenuItem text="Open data file" onAction="#onOpenFileWindow"/>
+                    </Menu>
+                    <Menu text="View">
+                        <RadioMenuItem text="Toggle Debug mode" onAction="#toggleDebugMode"/>
+                        <RadioMenuItem text="Toggle KDTree" onAction="#toggleKDTree" />
+                        <RadioMenuItem text="Toggle Draw Only Dijkstra" onAction="#toggleDebugDrawOnlyDijkstraMode"/>
+                        <Menu text="Debug Mode">
+                            <Menu text="WindowSize">
+                                <MenuItem text="0.8" onAction="#setWindowSize6"/>
+                                <MenuItem text="0.6" onAction="#setWindowSize5"/>
+                                <MenuItem text="0.5" onAction="#setWindowSize4"/>
+                                <MenuItem text="0.4" onAction="#setWindowSize3"/>
+                                <MenuItem text="0.3" onAction="#setWindowSize2"/>
+                                <MenuItem text="0.2" onAction="#setWindowSize1"/>
+                            </Menu>
+                        </Menu>
+                        <Menu text="Theme">
+                            <MenuItem text="Light Mode" id="0" onAction="#changeTheme"/>
+                            <MenuItem text="Dark Mode" id="1" onAction="#changeTheme"/>
+                            <MenuItem text="Epilepsy Mode" id="2" onAction="#changeTheme"/>
+                        </Menu>
+                    </Menu>
+                    <!-- <Menu text="Routeplanning">
+                        <MenuItem text="Show End Destination" onAction=""/>
+                    </Menu> -->
+                    <Menu text="Change Travel Type">
+                        <MenuItem text="Car" onAction="#changeTravelTypeToCar"/>
+                        <MenuItem text="Bicycle" onAction="#changeTravelTypeToBicycle"/>
+                        <MenuItem text="Foot" onAction="#changeTravelTypeToFoot"/>
+                    </Menu>
+                </MenuBar>
+            </top>
+            <center>
+                <StackPane fx:id="stackPane">
+                    <children>
+                        <MapCanvas fx:id="canvas"
+                                width="${scene.width}"
+                                height="${scene.height}"
+                                onScroll="#onScroll"
+                                onMouseMoved="#onMouseMoved"
+                                onMousePressed="#onMousePressed"
+                                onMouseDragged="#onMouseDragged"/>
+                        <ComboBox fx:id="comboBox1" prefWidth="150.0" StackPane.alignment="TOP_LEFT">
+                        </ComboBox>
+
+                        <ComboBox fx:id="comboBox2" prefWidth="150.0" StackPane.alignment="TOP_LEFT">
+                        <StackPane.margin>
+                            <Insets top="30.0" />
+                        </StackPane.margin>
+                        </ComboBox>
+                        <!-- <Label fx:id="startPointLabel" StackPane.alignment="TOP_LEFT" visible="true"/> -->
+                        <!-- <Label fx:id="endPointLabel" StackPane.alignment="TOP_LEFT" visible="false"/> -->
+                        
+                        <VBox StackPane.alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity">
+                            <children>
+                                <Button fx:id="removeRoute" Disable="true"/>
+                                <Button fx:id="removeRouteStart" Disable="true"/>
+                                <Button fx:id="removeRouteEnd" Disable="true"/>
+                            </children>
+                        </VBox>
+
+                        <Label fx:id="fpsLabel" text="loading..." StackPane.alignment="TOP_RIGHT" visible="true"/>
+
+
+                        <Label fx:id="nearestRoadnameLabel" StackPane.alignment="BOTTOM_RIGHT" visible="true">
+                            <StackPane.margin>
+                                <Insets bottom="30.0" />
+                            </StackPane.margin>
+                        </Label>
+
+                        <Label fx:id="zoomBarLabel" alignment="BOTTOM_LEFT" text="test" StackPane.alignment="BOTTOM_LEFT">
+                            <StackPane.margin>
+                               <Insets bottom="60.0" left="30.0"/>
+                            </StackPane.margin>
+                        </Label>
+                        <HBox fx:id="zoomBar" alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="100.0" style="-fx-background-color: black;" StackPane.alignment="BOTTOM_LEFT">
+                            <StackPane.margin>
+                               <Insets bottom="50.0" left="30.0"/>
+                            </StackPane.margin>
+                         </HBox>
+                         <ScrollPane fx:id="scrollPaneShowRoute" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="250.0" StackPane.alignment="BOTTOM_RIGHT" visible="false">
+                            <StackPane.margin>
+                                <Insets bottom="60.0" />
+                            </StackPane.margin>
+                            <content>
+                               <VBox fx:id="vBoxRouteLabels" prefHeight="400.0" prefWidth="250.0">
+                                  <children>
+                                     <Label text="Label">
+                                        <VBox.margin>
+                                           <Insets left="10.0" top="10.0" />
+                                        </VBox.margin>
+                                     </Label>
+                                     <Label text="Label">
+                                        <VBox.margin>
+                                           <Insets left="10.0" top="10.0" />
+                                        </VBox.margin>
+                                     </Label>
+                                     <Label text="Label">
+                                        <VBox.margin>
+                                           <Insets left="10.0" top="10.0" />
+                                        </VBox.margin>
+                                     </Label>
+                                     <Label text="Label">
+                                        <VBox.margin>
+                                           <Insets left="10.0" top="10.0" />
+                                        </VBox.margin>
+                                     </Label>
+                                  </children>
+                               </VBox>
+                            </content>
+                         </ScrollPane>
+                     </children>
+                </StackPane>
+            </center>
+        </BorderPane>
+    </root>
+</Scene>

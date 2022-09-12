@@ -1,0 +1,21 @@
+@startmindmap
+
+* Root
+
+** Split
+
+*** Split
+**** FinalPoint
+
+*** Split
+**** FinalPoint
+
+** Split
+
+*** Split
+**** FinalPoint
+
+*** Split
+**** FinalPoint
+
+@endmindmap

@@ -1,0 +1,56 @@
+@startuml
+
+object Model {
+	Model.java
+	OSMNode.java
+	Theme.java
+	WayType.java
+  UnsupportedTravelTypeException.java
+	-- 
+	Address Classes
+	- Address.java
+	- AddressParser.java
+	- AddressBuilder.java
+	- TST.java
+	- TSTNode.java
+  - Queue.java
+	--   
+	KDTree Classes
+	- Edge.java
+  - MedianSO.java
+	- FinalPoint.java
+	- IndexMinPQ.java
+	- KDTree.java
+	- KDTreeQueue.java
+	- NodeMap.java
+	- Point.java
+	- RoadNode.java
+  - Traveltype.java
+  - Route.java
+	--
+	Drawable Classes
+	- Circle
+	- Drawable
+	- KDTreeSubdivide
+	- MultiPolygon
+	- Polyline
+}
+
+
+object Controller {
+	Only Controller
+}
+
+object View {
+	View
+	MapCanvas
+  RepaintAnimationTimer
+  FPSTracker
+  ZoomLevels
+
+}
+
+Controller -> Model
+Controller --> View
+
+@enduml

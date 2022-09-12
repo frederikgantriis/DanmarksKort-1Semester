@@ -1,0 +1,35 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.11'
+    id "org.beryx.jlink" version "2.25.0"
+
+}
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = "17"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+application {
+    mainClass = 'bfst22.vector.App'
+    mainModule = 'bfst22'
+    applicationDefaultJvmArgs = ['-Xmx6000m']
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
